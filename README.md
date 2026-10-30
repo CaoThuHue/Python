@@ -1,23 +1,33 @@
 
 import tkinter as tk
+
 from tkinter import messagebox
+
 import xml.etree.ElementTree as ET
+
 #import json
+
 import math
 
 BG = '#FCE7F3'
+
 CARD = '#FFFFFF'
+
 PINK = '#BE185D'
+
 TEXT = '#831843'
 
 class ProductManager:
-    def __init__(self):
-        self.filename = 'products.xml'
-        #self.filename = 'products.json'
-        self.products = []
+
+    def __init__(self):   
+        self.filename = 'products.xml'   
+        #self.filename = 'products.json'  
+        self.products = []      
         self.load_products()
-##########
-def save_products(self):
+        
+
+    def save_products(self):
+
     try:
         with open(self.filename, 'w', encoding='utf-8') as f:
             json.dump(self.products, f, ensure_ascii=False, indent=4)
@@ -25,8 +35,9 @@ def save_products(self):
     except (OSError, ValueError) as e:
         messagebox.showerror('Lỗi lưu JSON', str(e))
         return False
+        
+    def load_products(self):
 
-def load_products(self):
     try:
         with open(self.filename, 'r', encoding='utf-8') as f:
             self.products = json.load(f)
@@ -35,7 +46,8 @@ def load_products(self):
     except json.JSONDecodeError:
         messagebox.showerror('Lỗi', 'File JSON không hợp lệ')
         self.products = []
-##########
+        
+
     def save_products(self):
         try:
             root_xml = ET.Element('products')
@@ -127,6 +139,7 @@ def load_products(self):
         return True
 
 class ProductApp:
+
     def __init__(self, root):
         self.root = root
         self.manager = ProductManager()
@@ -271,6 +284,7 @@ class ProductApp:
 
 # CHAY UNG DUNG
 if __name__ == '__main__':
+
     root = tk.Tk()
     app = ProductApp(root)
     root.mainloop()
